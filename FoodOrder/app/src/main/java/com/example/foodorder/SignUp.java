@@ -17,59 +17,62 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignIn extends AppCompatActivity {
-    EditText editPhone, editPassword;
-    Button btnSignIn;
+public class SignUp extends AppCompatActivity {
+
+    EditText editPhone, editName, editPassword;
+    Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_up);
 
-        editPassword = (EditText)findViewById(R.id.editPassword);
+        editName = (EditText)findViewById(R.id.editName);
         editPhone = (EditText)findViewById(R.id.editPhone);
-        btnSignIn = (Button)findViewById(R.id.btnSignIn);
+        editPassword = (EditText)findViewById(R.id.editPassword);
 
-//        init Firebase
+        btnSignUp = (Button)findViewById(R.id.btnSignUp);
+
+        //        init Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference table_user = database.getReference("User");
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+                final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
                 mDialog.setMessage("Please waiting ....");
                 mDialog.show();
+
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-//check user not exist in database
-                        if (snapshot.child(editPhone.getText().toString()).exists()) {
+
+//                        check if already user phone
+                        if (snapshot.child(editPhone.getText().toString()).exists()){
                             mDialog.dismiss();
-//                        get User Info
-
-                            User user = snapshot.child(editPhone.getText().toString()).getValue(User.class);
-
-                            if (user.getPassword().equals(editPassword.getText().toString())) {
-                                Toast.makeText(SignIn.this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(SignIn.this, "Wrong Password !", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(SignUp.this, "Phone Number already register", Toast.LENGTH_LONG).show();
                         }
                         else {
                             mDialog.dismiss();
-                            Toast.makeText(SignIn.this, "User not exist", Toast.LENGTH_SHORT).show();
+                            User user = new User(editName.getText().toString(),editPassword.getText().toString());
+                            table_user.child(editPhone.getText().toString()).setValue(user);
+
+                            Toast.makeText(SignUp.this, "Sign Up successfully", Toast.LENGTH_LONG).show();
+
+                            finish();
                         }
+
                     }
 
-                        @Override
-                        public void onCancelled (@NonNull DatabaseError error){
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-
+                    }
                 });
+
             }
         });
+
     }
 }

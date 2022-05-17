@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_main.xml" value="0.1328125" />
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_sign_up.xml" value="0.1328125" />
         <entry key="..\:/Ann/LTUDDD/FoodOrder/app/src/main/res/layout/activity_main.xml" value="0.3052536231884058" />
         <entry key="..\:/Ann/LTUDDD/FoodOrder/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
       </map>

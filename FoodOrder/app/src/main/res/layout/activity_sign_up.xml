@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/my_bg"
-    tools:context=".SignIn">
+    tools:context=".SignUp">
 
 
 
@@ -30,6 +30,18 @@
             android:textSize="34sp" />
 
         <EditText
+            android:id="@+id/editName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:text="Nguyet Giap"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="34sp" />
+
+        <EditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,8 +55,8 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSignIn"
-        android:text="Sign In"
+        android:id="@+id/btnSignUp"
+        android:text="Sign Up"
         android:textSize="20dp"
         android:textColor="@android:color/white"
         android:layout_marginRight="8dp"
@@ -53,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@android:color/holo_green_light"
+        android:backgroundTint="@android:color/holo_green_dark"
 
         />
 </RelativeLayout>
