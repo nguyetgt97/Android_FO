@@ -1,29 +1,39 @@
 package com.example.foodorder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodorder.Interface.ItemClickListener;
+import com.example.foodorder.Model.Category;
+import com.example.foodorder.ViewHolder.MenuViewHolder;
 import com.example.foodorder.common.Common;
 import com.example.foodorder.databinding.ActivityHomeBinding;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +46,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     RecyclerView recycler_menu;
 
     RecyclerView.LayoutManager layoutManager;
+
+    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
@@ -74,8 +86,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,"Open navigation drawer","Close navidation drawer");
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        int openDrawerContentDescRes;
+//        int closeDrawerContentDescRes;
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer,
+                toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,"Open navigation drawer","Close navidation drawer");
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -84,11 +104,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 //        set Name for user
         View headerView = navigationView.getHeaderView(0);
-        txtFullName = (TextView) findViewById(R.id.txtFullName);
+        txtFullName = (TextView) headerView.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
 
 //        load menu
 
+        recycler_menu = (RecyclerView) findViewById(R.id.recycler_menu);
+        recycler_menu.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recycler_menu.setLayoutManager(layoutManager);
+
+        loadMenu();
 
 //        NavigationView navigationView = binding.navView;
 //        // Passing each menu ID as a set of Ids because each
@@ -102,9 +128,40 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 //        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private void setSupportActionBar(Toolbar toolbar) {
+    private void loadMenu() {
+
+        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item,MenuViewHolder.class, category) {
+            @Override
+            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
+                viewHolder.txtMenuName.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.imageView);
+
+                final Category clickItem = model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onclick(View view, int position, boolean isLongClick) {
+//                        Toast.makeText(Home.this,""+clickItem.getName(),Toast.LENGTH_SHORT).show();
+//                        get categoryID and sent to new Activity
+                        Intent foodlist = new Intent(Home.this, FoodList.class);
+                        foodlist.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        startActivity(foodlist);
+                    }
+                });
+
+            }
+        };
+        recycler_menu.setAdapter(adapter);
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,6 +169,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
+
+     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void setSupportActionBar(Toolbar toolbar) {
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -122,6 +191,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        int id = item.getItemId();
+        if ( id == R.id.nav_menu){
+
+        }else if (id == R.id.nav_cart){
+
+        }
+        else if (id == R.id.nav_orders){
+
+        }else if (id == R.id.nav_log_out){
+
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
