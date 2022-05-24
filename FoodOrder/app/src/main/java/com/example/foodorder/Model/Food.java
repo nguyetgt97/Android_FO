@@ -1,18 +1,20 @@
 package com.example.foodorder.Model;
 
 public class Food {
-    private String Name,Image,Price,Discount,MenuId;
+    private String Name,Image,Price,Discount,MenuId, Description;
 
     public Food() {
 
     }
 
-    public Food(String name, String image, String price, String discount, String menuId) {
+
+    public Food(String name, String image, String price, String discount, String menuId, String description) {
         Name = name;
         Image = image;
         Price = price;
         Discount = discount;
         MenuId = menuId;
+        Description = description;
     }
 
     public String getName() {
@@ -53,5 +55,13 @@ public class Food {
 
     public void setMenuId(String menuId) {
         MenuId = menuId;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 }
