@@ -60,5 +60,8 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'com.github.ashik94vc:ElegantNumberButton:v1.0.3'
 
+
+    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 //    implementation 'com.cepheuen.elegant-number-button:lib:1.0.3'
 }
