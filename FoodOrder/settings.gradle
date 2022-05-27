@@ -10,9 +10,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        maven {
+//            url 'http://dl.bintray.com/amulyakhare/maven'
+//        }
         maven {
             url "https://jitpack.io"
         }
+
     }
 }
 rootProject.name = "FoodOrder"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,12 +68,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         category = database.getReference("Category");
 
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab) ;
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent cartIntent = new Intent(Home.this, Cart.class);
+                startActivity(cartIntent);
             }
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
         });
 
 //        binding = ActivityHomeBinding.inflate(getLayoutInflater());

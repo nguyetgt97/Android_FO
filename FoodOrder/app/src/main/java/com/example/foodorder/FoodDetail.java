@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,9 +33,10 @@ public class FoodDetail extends AppCompatActivity {
 
     String foodId = "";
     FirebaseDatabase database;
-    DatabaseReference foods;
+    DatabaseReference food;
 
     Food currentFood;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +44,17 @@ public class FoodDetail extends AppCompatActivity {
 
 //        FireBase
         database = FirebaseDatabase.getInstance();
-        foods = database.getReference("Food");
+        food = database.getReference("Food");
 
 //        init view
         numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
         btnCart = (FloatingActionButton) findViewById(R.id.btnCart);
 
+
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 new Database(getBaseContext()).addToCart(new Order(
                         foodId,
                         currentFood.getName(),
@@ -84,7 +88,7 @@ public class FoodDetail extends AppCompatActivity {
 
     private void getDetailFood(String foodId) {
 
-        foods.child(foodId).addValueEventListener(new ValueEventListener() {
+        food.child(foodId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

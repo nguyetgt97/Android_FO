@@ -8,7 +8,7 @@ public class User {
     public User() {
     }
 
-//    public User(String name, String password){
+    //    public User(String name, String password){
 //        Name = name;
 //        Password = password;
 //    }
@@ -16,7 +16,7 @@ public class User {
     public User(String name, String password) {
         Name = name;
         Password = password;
-        Phone = phone;
+
     }
 
     public String getPhone() {
