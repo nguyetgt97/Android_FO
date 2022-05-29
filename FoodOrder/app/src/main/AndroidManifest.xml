@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application xmlns:tools="http://schemas.android.com/tools"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrder"
         tools:replace="android:theme">
+        <activity
+            android:name=".OrderStatus"
+            android:exported="false" />
         <activity
             android:name=".Cart"
             android:exported="false" />

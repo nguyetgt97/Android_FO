@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_food_list.xml" value="0.11764705882352941" />
         <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_main.xml" value="0.1328125" />
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_order_status.xml" value="0.1625" />
         <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/activity_sign_up.xml" value="0.1328125" />
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/cart_layout.xml" value="0.1625" />
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/layout/order_layout.xml" value="0.22" />
+        <entry key="..\:/Android_FO/FoodOrder/app/src/main/res/menu/activity_main_drawer.xml" value="0.1625" />
         <entry key="..\:/Ann/LTUDDD/Android_FO/FoodOrder/app/src/main/res/layout/activity_cart.xml" value="0.29010416666666666" />
         <entry key="..\:/Ann/LTUDDD/Android_FO/FoodOrder/app/src/main/res/layout/activity_food_detail.xml" value="0.24087591240875914" />
         <entry key="..\:/Ann/LTUDDD/Android_FO/FoodOrder/app/src/main/res/layout/activity_food_list.xml" value="0.12335359675785208" />

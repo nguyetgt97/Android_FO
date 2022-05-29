@@ -7,8 +7,9 @@ public class Order {
     private String Price;
     private String Discount;
 
-    public Order(String productId) {
+    public Order() {
     }
+
 
 
     public Order(String productId, String productName, String quantity, String price, String discount) {
