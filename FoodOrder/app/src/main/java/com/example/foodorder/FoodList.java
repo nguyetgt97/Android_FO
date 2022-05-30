@@ -1,17 +1,15 @@
 package com.example.foodorder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorder.Interface.ItemClickListener;
 import com.example.foodorder.Model.Food;
@@ -27,7 +25,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class FoodList extends AppCompatActivity {
 
@@ -84,7 +81,7 @@ public class FoodList extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //                when user type their text, we will change suggest list
                 List<String> suggest = new ArrayList<String>();
-                for (String search:suggest){
+                for (String search:suggestList){
                     if ( search.toLowerCase().contains(materialSearchBar.getText().toLowerCase()))
                         suggest.add(search);
                 }
@@ -127,7 +124,7 @@ public class FoodList extends AppCompatActivity {
                 Food.class,
                 R.layout.food_item,
                 FoodViewHolder.class,
-                foodlist.orderByChild("MenuId").equalTo(categoryId)
+                foodlist.orderByChild("Name").equalTo(text.toString())
         ) {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
@@ -139,7 +136,7 @@ public class FoodList extends AppCompatActivity {
                 viewHolder.setItemClickListener((view, position1, isLongClick) -> {
 //                    start new Activity
                     Intent foodDetail = new Intent(FoodList.this, FoodDetail.class);
-                    foodDetail.putExtra("FoodId", adapter.getRef(position).getKey());
+                    foodDetail.putExtra("FoodId", searchAdapter.getRef(position).getKey());
                     startActivity(foodDetail);
                         }
                 );
