@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorder.Interface.ItemClickListener;
 import com.example.foodorder.Model.Category;
+import com.example.foodorder.Service.ListenOrder;
 import com.example.foodorder.ViewHolder.MenuViewHolder;
 import com.example.foodorder.common.Common;
 import com.example.foodorder.databinding.ActivityHomeBinding;
@@ -122,16 +123,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         loadMenu();
 
-//        NavigationView navigationView = binding.navView;
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-//                .setOpenableLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+//        Register Service
+        Intent service = new Intent(Home.this, ListenOrder.class);
+        startService(service);
+
     }
 
     private void loadMenu() {
