@@ -1,20 +1,21 @@
 {
   "project_info": {
-    "project_number": "226455993667",
-    "project_id": "myapp-ecf14",
-    "storage_bucket": "myapp-ecf14.appspot.com"
+    "project_number": "8259875113",
+    "firebase_url": "https://foserver-5758d-default-rtdb.firebaseio.com",
+    "project_id": "foserver-5758d",
+    "storage_bucket": "foserver-5758d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:226455993667:android:3410c4a28475c56f9083f6",
+        "mobilesdk_app_id": "1:8259875113:android:7ece12482e8fa5b0c4c738",
         "android_client_info": {
           "package_name": "com.example.foodorder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "226455993667-mmgse199cc7gntt6rjrk607dm1pn89bu.apps.googleusercontent.com",
+          "client_id": "8259875113-3d1cu3n66i3vev5itlaemghboe6uri08.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.foodorder",
@@ -22,20 +23,20 @@
           }
         },
         {
-          "client_id": "226455993667-ec43b65f7ooo5en64c5gombvf611a7jm.apps.googleusercontent.com",
+          "client_id": "8259875113-43iporbi12u5d6cva9lljkjnavu12575.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCKBUaa3TiGkFqJYxyIq_A7W5PXWk6R0lw"
+          "current_key": "AIzaSyDxFC1ag8R9uaXJdfmWlnOCFKNd00FlYek"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "226455993667-ec43b65f7ooo5en64c5gombvf611a7jm.apps.googleusercontent.com",
+              "client_id": "8259875113-43iporbi12u5d6cva9lljkjnavu12575.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
