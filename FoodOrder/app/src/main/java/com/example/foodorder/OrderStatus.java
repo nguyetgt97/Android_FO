@@ -40,7 +40,15 @@ public class OrderStatus extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        loadOrders(Common.currentUser.getPhone());
+//        if we start OrderStatus activity from Home Activity
+//        we willot put any extra, so wenjust loadOder by phone from Common
+
+        if(getIntent() == null)
+            loadOrders(Common.currentUser.getPhone());
+        else
+            loadOrders(getIntent().getStringExtra("userPhone"));
+
+//        loadOrders(Common.currentUser.getPhone());
     }
 
     private void loadOrders(String phone) {

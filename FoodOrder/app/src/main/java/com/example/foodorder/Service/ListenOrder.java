@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.foodorder.Model.Request;
 import com.example.foodorder.OrderStatus;
+import com.example.foodorder.R;
 import com.example.foodorder.common.Common;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -72,7 +73,8 @@ public class ListenOrder extends Service implements ChildEventListener {
                 .setContentInfo("your order was updated")
                 .setContentText("Order #"+key+ " was update status to "+Common.convertCodeToStatus(request.getStatus()))
                 .setContentIntent(contentIntent)
-                .setContentInfo("Info");
+                .setContentInfo("Info")
+                .setSmallIcon(R.mipmap.ic_launcher);
 
         NotificationManager notificationManager = (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1,builder.build());
