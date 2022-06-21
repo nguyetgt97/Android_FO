@@ -2,6 +2,7 @@ package com.example.foodorder.ViewHolder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.foodorder.Cart;
 import com.example.foodorder.Interface.ItemClickListener;
 import com.example.foodorder.Model.Order;
 import com.example.foodorder.R;
+import com.example.foodorder.common.Common;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -26,7 +28,8 @@ import jahirfiquitiva.libs.textdrawable.TextDrawable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
-class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+, View.OnCreateContextMenuListener {
 
     public TextView txt_cart_name, txt_price;
     public ImageView img_cart_count;
@@ -41,10 +44,19 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         txt_cart_name = (TextView) itemView.findViewById(R.id.cart_item_name);
         txt_price = (TextView) itemView.findViewById(R.id.cart_item_price);
         img_cart_count = (ImageView) itemView.findViewById(R.id.cart_item_count);
+
+        itemView.setOnCreateContextMenuListener(this);
     }
 
     @Override
     public void onClick(View view) {
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+        contextMenu.setHeaderTitle("select action");
+        contextMenu.add(0,0,getAdapterPosition(), Common.DELETE);
 
     }
 }

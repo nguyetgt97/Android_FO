@@ -14,6 +14,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.foodorder.Database.Database;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.Model.Order;
+import com.example.foodorder.common.Common;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -82,7 +83,12 @@ public class FoodDetail extends AppCompatActivity {
         if (getIntent() != null)
             foodId = getIntent().getStringExtra("FoodId");
         if (!foodId.isEmpty()){
-            getDetailFood(foodId);
+            if (Common.isConnectedToInternet(getBaseContext()))
+                getDetailFood(foodId);
+            else{
+                Toast.makeText(FoodDetail.this, "Please check your connection !!", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
     }
 
