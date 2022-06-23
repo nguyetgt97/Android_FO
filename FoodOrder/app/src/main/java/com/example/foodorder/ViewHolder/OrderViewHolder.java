@@ -33,8 +33,8 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
-
-        itemClickListener.onclick(view, getAdapterPosition(), false);
+        //itemClickListener chưa được set nên bị null gây crash:
+//        itemClickListener.onclick(view, getAdapterPosition(), false);
 
     }
 }
