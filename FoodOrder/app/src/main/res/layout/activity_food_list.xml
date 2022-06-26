@@ -7,12 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".FoodList">
 
+    <RelativeLayout
+        android:id="@+id/ll_appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_red_2"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_restAppBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thực đơn"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+
     <com.mancj.materialsearchbar.MaterialSearchBar
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:mt_hint="Enter your food"
+        app:mt_hint="Nhập tên món ăn"
         app:mt_speechMode="false"
         tools:ignore="MissingConstraints" />
 

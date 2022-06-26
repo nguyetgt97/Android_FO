@@ -1,5 +1,6 @@
 package com.example.foodorder.Service;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -57,6 +58,7 @@ public class ListenOrder extends Service implements ChildEventListener {
     public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 //        trigger here
         Request request = snapshot.getValue(Request.class);
+        assert request != null;
         showNotification(snapshot.getKey(),request);
 
     }
@@ -64,7 +66,7 @@ public class ListenOrder extends Service implements ChildEventListener {
     private void showNotification(String key, Request request) {
         Intent intent = new Intent(getBaseContext(), OrderStatus.class);
         intent.putExtra("userPhone",request.getPhone());
-        PendingIntent contentIntent = PendingIntent.getActivity(getBaseContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent contentIntent = PendingIntent.getActivity(getBaseContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
         builder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
